@@ -1,6 +1,6 @@
 package board;
 
-public class Piece {
+public abstract class Piece {
     private Board board;
     protected Position position;
 
