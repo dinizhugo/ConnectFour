@@ -2,6 +2,11 @@ package application;
 
 import connectfourgame.Color;
 import connectfourgame.ConnectFourPiece;
+import connectfourgame.ConnectFourPosition;
+import connectfourgame.exception.GameException;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -38,6 +43,16 @@ public class UI {
         System.out.flush();
     }
 
+    public static ConnectFourPosition readChessPosition(Scanner sc) throws GameException {
+        try {
+            String s = sc.nextLine();
+            char column = s.charAt(0);
+            return new ConnectFourPosition(column);
+        } catch (RuntimeException e) {
+            throw new InputMismatchException("Error reading Position. Valid values are from A to G.");
+        }
+    }
+
     private static void printPieces(ConnectFourPiece piece) {
         if (piece == null) {
             System.out.print("[-]");
@@ -45,7 +60,7 @@ public class UI {
             if (piece.getColor() == Color.RED) {
                 System.out.print("[" + ANSI_RED + piece + ANSI_RESET + "]");
             }else {
-                System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+                System.out.print("[" + ANSI_YELLOW + piece + ANSI_RESET + "]");
             }
         }
         System.out.print(" ");

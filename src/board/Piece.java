@@ -4,9 +4,9 @@ public abstract class Piece {
     private Board board;
     protected Position position;
 
-    public Piece(Board board, Position position) {
+    public Piece(Board board) {
         this.board = board;
-        this.position = position;
+        this.position = null;
     }
 
     public Position getPosition() {
@@ -15,5 +15,10 @@ public abstract class Piece {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return "O";
     }
 }

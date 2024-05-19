@@ -9,20 +9,17 @@ public class Position {
         this.column = column;
     }
 
+    public Position (int column) {
+        this.row = 5;
+        this.column = column;
+    }
+
     public int getColumn() {
         return column;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
     public int getRow() {
         return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
     }
 
     public void setValues(int row, int column) {

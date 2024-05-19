@@ -34,7 +34,11 @@ public class Board {
     }
 
     public void placePiece(Piece piece, Position position) throws BoardException {
-        if (!isThereAPiece(position.getColumn())) {
+        if (isColumnFull(position.getColumn())) {
+            throw new BoardException("The column " + position.getColumn() + " is already complete, choose another column.");
+        }
+
+        if (isThereAPiece(position.getColumn())) {
             pieces[5][position.getColumn()] = piece;
         }else {
             Position lastPiece = LastOccurrencePieceInColumn(position.getColumn());
@@ -43,19 +47,38 @@ public class Board {
     }
 
     public boolean isThereAPiece(int column) {
-        if (piece(5, column) != null) {
-            return false;
-        }
-        return true;
+        return piece(5, column) == null;
     }
 
-    private Position LastOccurrencePieceInColumn(int column) throws BoardException {
-        for (int row = pieces.length - 1; row > 0; row--) {
-            if (piece(row, column) == null) {
-                return new Position(row, column);
+    public boolean isColumnFull(int column) {
+        int countColumn = 0;
+        for (int row = pieces.length - 1; row > -1 ; row--) {
+            if (pieces[row][column] != null) {
+                countColumn++;
             }
         }
-        throw new BoardException("The column is already complete, choose another column.");
+        return (countColumn >= 6);
+    }
+
+    public boolean isThereAnyPossiblePlace() {
+        int count = 0;
+        for (int column = 0; column < getColumns(); column++) {
+            if (isColumnFull(column)) {
+                count++;
+            }
+        }
+        return (count >= 7);
+    }
+
+    private Position LastOccurrencePieceInColumn(int column) {
+        Position p = new Position( 0,0);
+        for (int row = pieces.length - 1; row > -1; row--) {
+            if (piece(row, column) == null) {
+                 p.setValues(row, column);
+                 break;
+            }
+        }
+        return p;
     }
 
 }

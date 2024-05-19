@@ -7,8 +7,8 @@ import board.Position;
 public class ConnectFourPiece extends Piece {
     private Color color;
 
-    public ConnectFourPiece(Board board, Position position, Color color) {
-        super(board, position);
+    public ConnectFourPiece(Board board, Color color) {
+        super(board);
         this.color = color;
     }
 
