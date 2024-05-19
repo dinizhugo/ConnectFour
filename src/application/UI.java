@@ -33,6 +33,11 @@ public class UI {
         System.out.println(" A   B   C   D   E   F   G");
     }
 
+    public static void clearScreen() {
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
+    }
+
     private static void printPieces(ConnectFourPiece piece) {
         if (piece == null) {
             System.out.print("[-]");
