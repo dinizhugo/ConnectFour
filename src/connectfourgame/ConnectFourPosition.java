@@ -14,10 +14,6 @@ public class ConnectFourPosition {
         this.column = column;
     }
 
-    public char getColumn() {
-        return column;
-    }
-
     public Position toPosition() {
         return new Position(5, column - 'a');
     }

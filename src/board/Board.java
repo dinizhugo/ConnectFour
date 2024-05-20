@@ -21,17 +21,10 @@ public class Board {
         return columns;
     }
 
-    public Piece[][] getPieces() {
-        return pieces;
-    }
-
     public Piece piece(int row, int columns) {
         return pieces[row][columns];
     }
 
-    public Piece piece(Position position) {
-        return pieces[position.getRow()][position.getColumn()];
-    }
 
     public void placePiece(Piece piece, Position position) throws BoardException {
         if (isColumnFull(position.getColumn())) {

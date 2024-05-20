@@ -9,13 +9,6 @@ public abstract class Piece {
         this.position = null;
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
 
     @Override
     public String toString() {

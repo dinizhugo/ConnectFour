@@ -3,7 +3,6 @@ package application;
 import connectfourgame.ConnectFourMatch;
 import connectfourgame.ConnectFourPosition;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -20,7 +19,6 @@ public class Main {
                 connectFourMatch.placePiece(position);
             }catch (Exception e) {
                 System.out.println(e.getMessage());
-                System.out.println(Arrays.toString(e.getStackTrace()));
                 sc.nextLine();
             }
         }
