@@ -67,7 +67,7 @@ public class Board {
                 count++;
             }
         }
-        return (count >= 7);
+        return !(count >= 7);
     }
 
     private Position LastOccurrencePieceInColumn(int column) {

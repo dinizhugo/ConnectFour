@@ -1,6 +1,7 @@
 package application;
 
 import connectfourgame.Color;
+import connectfourgame.ConnectFourMatch;
 import connectfourgame.ConnectFourPiece;
 import connectfourgame.ConnectFourPosition;
 import connectfourgame.exception.GameException;
@@ -28,7 +29,7 @@ public class UI {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-    public static void printBoard(ConnectFourPiece[][] pieces) {
+    private static void printBoard(ConnectFourPiece[][] pieces) {
         for (int i = 0; i < pieces.length; i++) {
             for (int j = 0; j < pieces[i].length; j++) {
                 printPieces(pieces[i][j]);
@@ -45,11 +46,23 @@ public class UI {
 
     public static ConnectFourPosition readChessPosition(Scanner sc) throws GameException {
         try {
-            String s = sc.nextLine();
+            String s = sc.nextLine().toLowerCase();
             char column = s.charAt(0);
             return new ConnectFourPosition(column);
         } catch (RuntimeException e) {
             throw new InputMismatchException("Error reading Position. Valid values are from A to G.");
+        }
+    }
+
+    public static void printMatch(ConnectFourMatch match) {
+        printBoard(match.getAllPieces());
+        System.out.println();
+        if (match.getWinner() == null) {
+            System.out.println("ROUND: " + match.getTurn());
+            System.out.println("TURN: " + match.getCurrentPlayer());
+        } else {
+            System.out.println("WINNER: " + match.getWinner());
+            System.out.println("TOTAL ROUNDS: " + match.getTurn());
         }
     }
 
